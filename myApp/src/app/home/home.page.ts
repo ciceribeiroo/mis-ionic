@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { NgModule } from '@angular/core';
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { IonicModule } from '@ionic/angular';
+import { IonicModule, ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-home',
@@ -15,6 +14,17 @@ import { IonicModule } from '@ionic/angular';
 })
 export class HomePage {
 
-  constructor() {}
+  constructor(private tosastController: ToastController) {}
 
+    onCalculate(){
+      console.log("Clicou!")
+    }
+
+    async showMessage(){
+        const toast = await this.tosastController.create({
+            message: "Clicou!",
+            duration: 3000
+        });
+        toast.present();
+    }
 }
