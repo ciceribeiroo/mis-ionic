@@ -25,9 +25,17 @@ export class HomePage {
     }
 
     async showMessage(msg: string){
+        const previousToast = await this.tosastController.getTop();
+        if(previousToast){
+          //return; -> se alterou os valores não recalcula
+          await this.tosastController.dismiss();
+        }
+
         const toast = await this.tosastController.create({
             message: msg,
-            duration: 3000
+            buttons: [{
+              icon: 'close'
+            }]
         });
         toast.present();
     }
